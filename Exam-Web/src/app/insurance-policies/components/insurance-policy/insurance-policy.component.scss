@@ -1,0 +1,22 @@
+@import 'src/assets/scss/_globals.scss';
+
+
+.policy--form {
+    form {
+        display: flex;
+        flex-direction: column;
+
+        mat-form-field {
+            margin: 0 50px 10px 0;
+        }
+
+        button {
+            width: 150px;
+            margin: 36px 0;
+        }
+
+        mat-spinner {
+            margin: auto;
+        }
+    }
+}

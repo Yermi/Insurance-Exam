@@ -1,0 +1,77 @@
+<div class="insurance-policies--container">
+    <div class="insurance-policie--header tw-mb-4 tw-mt-8 tw-ms-4">
+        <h1>Insurance Policies for user: <strong>{{userId}}</strong></h1>
+        <button mat-raised-button color="primary" [routerLink]="['/insurance-policies/user/' + userId + '/', 'new']">
+            <mat-icon matSuffix>add</mat-icon>
+            <span>Add Policy</span>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="insurance-policies--filetr">
+        <!--date filter area-->
+        <h3 (click)="toggleDisplayFilter()" class="insurance-policies--filetr--title">
+            Filter policies by dates
+            <mat-icon [class.transform]="displayFilter" matSuffix>keyboard_arrow_down</mat-icon>
+        </h3>
+
+        <div class="insurance-policies--filetr--content" *ngIf="displayFilter">
+            <mat-form-field class="tw-ms-4 tw-mt-4">
+                <mat-label>Filter by dates</mat-label>
+                <mat-date-range-input [formGroup]="dateRangeForm" [rangePicker]="rangePicker">
+                    <input matStartDate placeholder="Start date" formControlName="start">
+                    <input matEndDate placeholder="End date" formControlName="end">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-slide-toggle [formControl]="applyFilter" class="tw-ms-4" [color]="'#673ab7'">
+                Apply date filter
+            </mat-slide-toggle>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="insurance-policies--list">
+        <mat-grid-list [cols]="colsNumber" [rowHeight]="rowHeight">
+            <mat-grid-tile
+                *ngFor="let policy of insurancePolicies | policiesFilter : dateRangeForm.value : applyFilter.value">
+                <mat-card class="policy--card">
+                    <mat-card-header>
+                        <div class="tw-flex tw-items-center tw-gap-2">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-card-title>Policy Number: {{ policy.policyNumber }}</mat-card-title>
+                        </div>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="tw-mt-1.5 tw-mb-1.5">
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>payments</mat-icon>
+                            <span class="tw-font-bold">Amount</span>: {{ policy.insuranceAmount }}
+                        </p>
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>timer</mat-icon>
+                            <span class="tw-font-bold">Start Date</span>: {{ policy.startDate | date: 'dd/MM/yyyy'}}
+                        </p>
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>timer</mat-icon>
+                            <span class="tw-font-bold">End Date</span>: {{ policy.endDate | date: 'dd/MM/yyyy'}}
+                        </p>
+                    </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <mat-card-actions class="tw-gap-2.5 policy--card--actions">
+                        <button mat-button>
+                            <mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="edit"></mat-icon>
+                            <span [routerLink]="['/insurance-policies/user', userId, 'policy', policy.id]">Edit</span>
+                        </button>
+
+                        <button mat-button (click)="deletePolicy(policy.id)">
+                            <mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"></mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

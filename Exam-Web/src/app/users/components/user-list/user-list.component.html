@@ -1,0 +1,51 @@
+<div class="users--container">
+    <div class="users--header tw-mb-4 tw-mt-8 tw-ms-4">
+        <h1>Users Dashboard</h1>
+        <button mat-raised-button color="primary" [routerLink]="['/users', 'new']">
+            <mat-icon matSuffix>person_add</mat-icon>
+            <span>Add User</span>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="users--list">
+        <mat-grid-list [cols]="colsNumber" [rowHeight]="rowHeight">
+            <mat-grid-tile *ngFor="let user of users">
+                <mat-card class="user--card">
+                    <mat-card-header>
+                        <div class="tw-flex tw-items-center tw-gap-2">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-card-title>{{ user.name }}</mat-card-title>
+                        </div>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="user--card--content tw-mt-1.5 tw-mb-1.5">
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>pin</mat-icon>
+                            <span class="tw-font-bold">Id</span>: {{ user.id }}
+                        </p>
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <span class="tw-font-bold">Email</span>: {{ user.email }}
+                        </p>
+                        <p class="tw-flex tw-items-center tw-gap-1">
+                            <mat-icon matSuffix>policy</mat-icon>
+                            <a [routerLink]="['/insurance-policies/user', user.id]">Policies</a>
+                        </p>
+                    </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <mat-card-actions class="tw-gap-2.5 user--card--actions">
+                        <button mat-button>
+                            <mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="edit"></mat-icon>
+                            <span [routerLink]="['/users', user.id]">Edit</span>
+                        </button>
+
+                        <button mat-button (click)="deleteUser(user.id)">
+                            <mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"></mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

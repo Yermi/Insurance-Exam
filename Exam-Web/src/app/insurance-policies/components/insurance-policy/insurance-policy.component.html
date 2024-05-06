@@ -1,0 +1,72 @@
+<div class="policy--container">
+    <div class="policy--header tw-mb-4 tw-mt-8 tw-ms-3">
+        <h1>Add Policy</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="tw-ms-3 tw-mb-4 tw-mt-4 tw-font-bold">
+        <h3>Enter policy details</h3>
+    </div>
+    <div class="policy--form tw-ms-3 tw-mt-8">
+        <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="form-field">
+                <mat-label for="policyNumber">Policy Number</mat-label>
+                <input matInput placeholder="Policy Number" formControlName="policyNumber" id="policyNumber" required>
+                <mat-icon matSuffix>pin</mat-icon>
+
+                <mat-error *ngIf="policyForm.get('policyNumber')?.hasError('required')">
+                    Policy Number is required
+                </mat-error>
+
+                <mat-error *ngIf="policyForm.get('policyNumber')?.hasError('maxlength')">
+                    Policy Number length is restricted to 8 numbers
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label for="amount">Amount</mat-label>
+                <input matInput placeholder="Amount" formControlName="insuranceAmount" id="amount" required>
+                <mat-icon matSuffix>attach_money</mat-icon>
+
+                <mat-error *ngIf="policyForm.get('insuranceAmount')?.hasError('required')">
+                    Amount is required
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Start date</mat-label>
+                <input matInput [matDatepicker]="start_picker" formControlName="startDate">
+                <mat-datepicker-toggle matIconSuffix [for]="start_picker"></mat-datepicker-toggle>
+                <mat-datepicker #start_picker></mat-datepicker>
+
+                <mat-error *ngIf="policyForm.get('startDate')?.hasError('required')">
+                    Start date is required
+                </mat-error>
+
+                <mat-error *ngIf="!policyForm.get('startDate')?.hasError('required') && policyForm.get('startDate')?.invalid">
+                    Start date is invalid
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="end_picker" formControlName="endDate">
+                <mat-datepicker-toggle matIconSuffix [for]="end_picker"></mat-datepicker-toggle>
+                <mat-datepicker #end_picker></mat-datepicker>
+
+                <mat-error *ngIf="policyForm.get('endDate')?.hasError('required')">
+                    End date is required
+                </mat-error>
+
+                <mat-error *ngIf="!policyForm.get('endDate')?.hasError('endDate') && policyForm.get('startDate')?.invalid">
+                    End date is invalid
+                </mat-error>
+            </mat-form-field>
+
+            <mat-spinner *ngIf="loading"></mat-spinner>
+            <mat-divider></mat-divider>
+            <button *ngIf="!loading" mat-raised-button color="primary" type="submit">
+                <mat-icon fontIcon="{{isUpdateMode ? 'update': 'add'}}"></mat-icon>
+                <span>{{isUpdateMode ? 'Update': 'Add'}}</span>
+            </button>
+        </form>
+    </div>

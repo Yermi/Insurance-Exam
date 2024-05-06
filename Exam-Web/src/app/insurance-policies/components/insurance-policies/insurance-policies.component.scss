@@ -1,0 +1,31 @@
+@import 'src/assets/scss/_globals.scss';
+
+.insurance-policies--filetr {
+    &--title {
+        margin: 6px 20px 0px;
+
+        .transform {
+            transform: rotateX(180deg);
+            transition-duration: 0.8s;
+            transition-property: transform;
+        }
+    }
+}
+
+.insurance-policies--list {
+    margin-top: 25px;
+
+    .policy--card {
+        border: #673ab7 solid 1px;
+        border-radius: 12px;
+        min-width: 450px;
+
+        @media (min-width: 285px) and (max-width: 959.98px) {
+            min-width: 90%;
+        }
+
+        &--actions {
+            padding: 16px !important;
+        }
+    }
+}

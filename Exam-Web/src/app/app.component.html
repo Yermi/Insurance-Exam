@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <div class="tw-flex tw-cursor-pointer" routerLink="/">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+    <span>Exam Web</span>
+  </div>
+  <!-- This fills the remaining space of the current row -->
+  <mat-divider class="div-v" vertical></mat-divider>
+
+  <div class="tw-flex tw-cursor-pointer tw-ms-3 tw-text-base tw-leading-8" routerLink="/users">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="group"></mat-icon>
+    <span>Users Dashboard</span>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

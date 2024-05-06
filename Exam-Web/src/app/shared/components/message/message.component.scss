@@ -1,0 +1,42 @@
+@import 'src/assets/scss/_globals.scss';
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+    .mat-icon {
+        font-size: 42px;
+        height: 42px;
+        width: 42px;
+        color: #673ab7
+    }
+}
+
+.message {
+    font-size: 26px;
+    font-weight: 400;
+    text-align: center;
+    margin: 40px 0;
+    line-height: 1.25;
+    padding: 0 25px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+
+    button {
+        width: 110px;
+        max-height: 30px;
+
+        &.secondary {
+            background-color: white;
+            color: black;
+            border: #673ab7 1px solid;
+        }
+    }
+}

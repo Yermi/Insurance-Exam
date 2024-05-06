@@ -1,0 +1,21 @@
+@import 'src/assets/scss/_globals.scss';
+
+
+.user--form {
+    form {
+        display: flex;
+        flex-direction: column;
+
+        mat-form-field {
+            margin: 0 50px 10px 0;
+        }
+
+        button {
+            width: 150px;
+        }
+
+        mat-spinner {
+            margin: auto;
+        }
+    }
+}

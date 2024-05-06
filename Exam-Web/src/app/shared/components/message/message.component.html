@@ -1,0 +1,21 @@
+<div>
+    <div *ngIf="data?.matIcon" class="icon">
+        <mat-icon matSuffix>{{data.matIcon}}</mat-icon>
+    </div>
+        
+    <div *ngIf="data?.title" class="header">
+        {{data.title}}
+    </div>
+    <div *ngIf="data?.message" class="message">
+        <span class="font-bold">{{data.message}}</span>
+    </div>
+
+    <div class="actions">
+        <button *ngIf="data?.yesButton" [mat-dialog-close]="true" mat-raised-button>
+            {{data.yesButton}}
+        </button>
+        <button *ngIf="data?.noButton" [mat-dialog-close]="false" mat-raised-button class="secondary">
+            {{data.noButton}}
+        </button>
+    </div>
+</div>
